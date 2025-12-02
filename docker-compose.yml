@@ -1,0 +1,11 @@
+services:
+    psitransfer:
+        image: psitrax/psitransfer    # Official PsiTransfer image
+        environment:
+            - PSITRANSFER_DEFAULT_RETENTION=86400    # Default file retention time (in seconds)
+            - PSITRANSFER_PORT=8080    # Internal port used by PsiTransfer
+        ports:
+            - '3000:8080'    # Exposes the internal port to the host on port 3000
+        volumes:
+            - ~/data:/data    # Directory where uploaded files will be stored
+        restart: unless-stopped    # Automatically restarts unless explicitly stopped
